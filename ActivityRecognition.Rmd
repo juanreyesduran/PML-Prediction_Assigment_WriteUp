@@ -27,6 +27,7 @@ TestData  <- read.csv(TestFile)
 # Partitioning and Cleaning Dataset
 
 The training dataset is partinioned in 2 to create a Train data (70% of the data) for the modeling process and a Test Data (with the remaining 30%) for the validations. 
+I removed all columns that contains NA and I removed features that are not in the testing dataset.
 
 ```{r}
 library(caret)
