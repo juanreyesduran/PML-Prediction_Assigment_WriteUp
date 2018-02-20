@@ -1,4 +1,3 @@
-
 ---
 title: "Activity Recognition"
 author: "Juan A. Reyes D."
