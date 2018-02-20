@@ -5,9 +5,10 @@ author: "Juan A. Reyes D."
 date: "February 20th 2018"
 ---
 
-```{r}
+
 # Reading Data
 
+```{r}
 TrainLink<- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
 TestLink  <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
 
