@@ -3,6 +3,7 @@
 title: "Activity Recognition"
 author: "Juan A. Reyes D."
 date: "February 20th 2018"
+output: html_document
 ---
 
 
