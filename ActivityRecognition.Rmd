@@ -58,3 +58,8 @@ confMatRF
 #plot matrix results
 plot(confMatRF$table, col = confMatRF$byClass, main = paste("Random Forest - Accuracy =",
      round(confMatRF$overall['Accuracy'], 4)))
+     
+     
+# Conclusion
+
+As can be seen from the confusion matrix the Random Forest model is very accurate, about 99%. 
