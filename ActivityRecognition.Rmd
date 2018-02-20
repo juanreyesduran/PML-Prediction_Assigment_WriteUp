@@ -1,6 +1,5 @@
-#XY
 
-Reading Data
+# Reading Data
 
 TrainLink<- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
 TestLink  <- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
@@ -14,32 +13,31 @@ download.file(TestLink, destfile = TestFile)
 TrainData <- read.csv(TrainFile)
 TestData  <- read.csv(TestFile)
 
-Partitioning and Cleaning Dataset
+# Partitioning and Cleaning Dataset
 
 library(caret)
 
-# create a partition using caret with the training dataset on 70,30 ratio
 PartitionTrain  <- createDataPartition(TrainData$classe, p=0.7, list=FALSE)
 Train <- TrainData[PartitionTrain, ]
 Test  <- TrainData[-PartitionTrain, ]
 
-# remove variables with Nearly Zero Variance
+#remove variables with Nearly Zero Variance
 NearZeroVar <- nearZeroVar(Train)
 Train <- Train[, -NearZeroVar]
 Test  <- Test[, -NearZeroVar]
 dim(TestSet)
 
-# remove variables that are mostly NA
+#remove variables that are mostly NA
 FullNA    <- sapply(Train, function(x) mean(is.na(x))) > 0.95
 Train <- Train[, FullNA==FALSE]
 Test  <- Test[, FullNA==FALSE]
 
-# remove identification only variables (columns 1 to 5)
+#remove identification only variables (columns 1 to 5)
 Train <- Train[, -(1:5)]
 Test  <- Test[, -(1:5)]
 
 
-Prediction Model Building with Random Forest
+# Prediction Model Building with Random Forest
 
 library(randomForest)
 library(rpart)
@@ -51,12 +49,12 @@ FitRandForest <- train(classe ~ ., data=Train, method="rf", trControl=RF)
 FitRandForest$finalModel
 
 
-Prediction on Test dataset
+# Prediction on Test dataset
 
 predictRF <- predict(FitRandForest, newdata=Test)
 confMatRF <- confusionMatrix(predictRF, Test$classe)
 confMatRF
 
-# plot matrix results
+#plot matrix results
 plot(confMatRF$table, col = confMatRF$byClass, main = paste("Random Forest - Accuracy =",
      round(confMatRF$overall['Accuracy'], 4)))
