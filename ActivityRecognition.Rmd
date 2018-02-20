@@ -2,7 +2,6 @@
 title: "Activity Recognition"
 author: "Juan A. Reyes D."
 date: "February 20th 2018"
-output: html_document
 ---
 
 
@@ -24,6 +23,7 @@ TestData  <- read.csv(TestFile)
 
 # Partitioning and Cleaning Dataset
 
+```{r}
 library(caret)
 
 PartitionTrain  <- createDataPartition(TrainData$classe, p=0.7, list=FALSE)
@@ -44,10 +44,11 @@ Test  <- Test[, FullNA==FALSE]
 #remove identification only variables (columns 1 to 5)
 Train <- Train[, -(1:5)]
 Test  <- Test[, -(1:5)]
-
+```
 
 # Prediction Model Building with Random Forest
 
+```{r}
 library(randomForest)
 library(rpart)
 library(rpart.plot)
@@ -56,10 +57,11 @@ set.seed(666)
 RF <- trainControl(method="cv", number=3, verboseIter=FALSE)
 FitRandForest <- train(classe ~ ., data=Train, method="rf", trControl=RF)
 FitRandForest$finalModel
-
+```
 
 # Prediction on Test dataset
 
+```{r}
 predictRF <- predict(FitRandForest, newdata=Test)
 confMatRF <- confusionMatrix(predictRF, Test$classe)
 confMatRF
@@ -67,7 +69,7 @@ confMatRF
 #plot matrix results
 plot(confMatRF$table, col = confMatRF$byClass, main = paste("Random Forest - Accuracy =",
      round(confMatRF$overall['Accuracy'], 4)))
-     
+```     
      
 # Conclusion
 
