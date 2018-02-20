@@ -1,4 +1,11 @@
 
+---
+title: "Activity Recognition"
+author: "Juan A. Reyes D."
+date: "February 20th 2018"
+---
+
+```{r}
 # Reading Data
 
 TrainLink<- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
@@ -12,6 +19,7 @@ download.file(TestLink, destfile = TestFile)
 
 TrainData <- read.csv(TrainFile)
 TestData  <- read.csv(TestFile)
+```
 
 # Partitioning and Cleaning Dataset
 
